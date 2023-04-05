@@ -1,0 +1,42 @@
+AIM : Object oriented concepts
+
+
+
+OBJECT AND CLASS
+
+class num {
+ // data member
+ private var number: Int = 5
+ // member function
+ fun calculateSquare(): Int {
+ return number*number
+ }
+}
+fun main(args: Array<String>) {
+ // create obj object of Example class
+ val obj = num()
+ println("${obj.calculateSquare()}")
+}
+
+
+
+
+INHERITANCE 
+
+open class Student(name: String, rollno: Int, stream: String) 
+{
+ init {
+ println("Name is $name.")
+ println("Roll No is $rollno")
+ println("Student of $stream")
+ }
+}
+class Programmer(name: String, rollno: Int, stream: 
+String):Student(name,rollno,stream){
+ fun doProgram() {
+ println("I'm Learning Kotlin Programming")
+ }
+}
+fun main(args: Array<String>){
+ val obj1 = Programmer("ABC", 5, "CS")
+ obj1.doProgram() }
