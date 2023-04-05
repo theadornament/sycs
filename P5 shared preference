@@ -1,0 +1,25 @@
+packagecom.example.sharedpreference
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.*
+class MainActivity: AppCompatActivity() {
+override fun onCreate(savedInstanceState: Bundle?) {
+super.onCreate(savedInstanceState)
+setContentView(R.layout.activity_main)
+valetname= findViewById<EditText>(R.id.name)
+valetrollno= findViewById<EditText>(R.id.rollno)
+valsave= findViewById<Button>(R.id.saveBtn)
+valget= findViewById<Button>(R.id.getBtn)
+valsharedPref= getSharedPreferences("addName", MODE_PRIVATE)
+varedit =sharedPref.edit()
+save.setOnClickListener{
+edit.putString("name", etname.text.toString())
+edit.putString("rollno", etrollno.text.toString())
+edit.commit()
+Toast.makeText(this, "data saved" , Toast.LENGTH_SHORT).show()
+}
+get.setOnClickListener{
+valmyname= sharedPref.getString("name", "default value")
+valmyroll= sharedPref.getString("rollno","default value")
+Toast.makeText(this, " Name: "+myname+" --- Rollno: " +myroll,Toast.LENGTH_SHORT).show()
+} } }
