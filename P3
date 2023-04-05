@@ -1,0 +1,65 @@
+Screen layout ,buttons text view radio buttons spinner.....
+
+
+
+
+package com.example.p2f //P2F stands for file name. 
+
+import androidx.appcompat.app.AppCompatActivity //By default
+import android.os.Bundle
+import android.view.View
+import android.widget.*
+import androidx.core.view.get
+class MainActivity : AppCompatActivity() {
+ //onCreate is the default method that is automatically generated
+ override fun onCreate(savedInstanceState: Bundle?) {
+ super.onCreate(savedInstanceState)
+ setContentView(R.layout.activity_main)
+val Name = findViewById<EditText>(R.id.name)
+ val submitButton= findViewById<Button>(R.id.button)
+ val dispMessage = findViewById<TextView>(R.id.textViewResponse)
+ val radioGroup= findViewById<RadioGroup>(R.id.selectgender)
+ val radioB1=findViewById<RadioButton>(R.id.radioButton1)
+ val radioB2=findViewById<RadioButton>(R.id.radioButton2)
+ val CheckB1= findViewById<CheckBox>(R.id.checkBox1)
+ val CheckB2= findViewById<CheckBox>(R.id.checkBox2)
+ val CodingLang = findViewById<TextView>(R.id.language)
+ val Universityyear= findViewById<Spinner>(R.id.spinner)
+ val myclass = findViewById<TextView>(R.id.myclass)
+ val year=arrayOf("FYCS","SYCS","TYCS")
+val arrayAdp = ArrayAdapter( 
+this,android.R.layout.simple_spinner_dropdown_item,year) //Simple dropdown 
+layout selected for the spinner list
+ Universityyear.adapter= arrayAdp
+ Universityyear.onItemSelectedListener= object : 
+AdapterView.OnItemSelectedListener {
+override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: 
+Int, p3: Long) {
+// To Display the Array class for the selected position.
+ myclass.text= "Your Class: " + year[position] 
+ }
+ override fun onNothingSelected(p0: AdapterView<*>?) {
+ myclass.text= "Please select Your Class"
+ } }
+ radioGroup.setOnCheckedChangeListener { group, checkedId ->
+ if(checkedId==R.id.radioButton1)
+ dispMessage.setText("Gender" + radioB1.text) /* If the 1st Radio 
+button (male) is chosen, its text will be displayed.*/ 
+ if(checkedId==R.id.radioButton2)
+ dispMessage.setText("Gender" + radioB2.text) /* If 2nd Radio Button 
+(female) is selected, its text will be displayed*/
+ }
+ submitButton.setOnClickListener{
+ dispMessage.setText("Welcome "+ Name.text) //"Welcome" will appear 
+along with the entered name.
+ //Putting all checkbox conditions
+ if(CheckB1.isChecked && CheckB2.isChecked){
+ CodingLang.text= "You love both languages" }
+ else if(CheckB1.isChecked){
+ CodingLang.text= "You love Python" }
+ else if(CheckB2.isChecked){
+ CodingLang.text= "You love Kotlin" }
+ else {
+ CodingLang.text= "You don't like these languages" }
+ }
+ }}
